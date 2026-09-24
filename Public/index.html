@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PulseFit — Personal Fitness OS</title>
+<meta name="description" content="A modern full-stack fitness tracker for workouts, goals, progress and hydration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- AUTH -->
+<section id="auth-screen" class="auth-screen">
+ <div class="auth-visual">
+  <div class="auth-visual-inner">
+   <div class="brand brand-light"><span class="brand-mark">P</span><span>PulseFit</span></div>
+   <div class="auth-hero">
+    <span class="eyebrow light">PERSONAL FITNESS OS</span>
+    <h1>Train with purpose.<br><i>Progress with proof.</i></h1>
+    <p>One calm, intelligent space for your workouts, goals, body metrics and daily habits.</p>
+    <div class="auth-metrics">
+     <div><strong>01</strong><span>Workout tracking</span></div>
+     <div><strong>02</strong><span>Progress insights</span></div>
+     <div><strong>03</strong><span>Habit building</span></div>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div class="auth-form-side">
+  <div class="auth-card">
+   <div class="auth-mobile-brand brand"><span class="brand-mark">P</span><span>PulseFit</span></div>
+   <div class="auth-heading"><span class="eyebrow">WELCOME</span><h2 id="auth-title">Welcome back</h2><p id="auth-subtitle">Sign in to continue your fitness journey.</p></div>
+   <form id="auth-form">
+    <div id="auth-name-wrap" class="field hidden"><label>Full name</label><input id="auth-name" name="name" placeholder="Alex Morgan"></div>
+    <div class="field"><label>Email</label><input id="auth-email" name="email" type="email" placeholder="you@example.com" required></div>
+    <div class="field"><label>Password</label><input id="auth-password" name="password" type="password" minlength="6" placeholder="••••••••" required></div>
+    <button class="button primary full" id="auth-submit">Sign in <span>→</span></button>
+   </form>
+   <div class="auth-divider"><span>OR</span></div>
+   <p class="auth-toggle"><span id="auth-toggle-text">Don't have an account?</span><button id="auth-toggle" type="button">Create one</button></p>
+  </div>
+ </div>
+</section>
+
+<!-- APP -->
+<div id="app-screen" class="app hidden">
+ <aside class="sidebar" id="sidebar">
+  <div class="sidebar-top">
+   <a class="brand" href="#"><span class="brand-mark">P</span><span>PulseFit</span></a>
+   <button id="close-mobile-nav" class="mobile-close">×</button>
+  </div>
+  <div class="workspace-label">WORKSPACE</div>
+  <nav class="nav">
+   <button class="nav-link active" data-page="dashboard"><span class="nav-symbol">⌂</span>Overview</button>
+   <button class="nav-link" data-page="workouts"><span class="nav-symbol">◈</span>Workouts</button>
+   <button class="nav-link" data-page="exercises"><span class="nav-symbol">▦</span>Exercise library</button>
+   <button class="nav-link" data-page="progress"><span class="nav-symbol">↗</span>Progress</button>
+   <button class="nav-link" data-page="goals"><span class="nav-symbol">◎</span>Goals</button>
+  </nav>
+  <div class="workspace-label secondary-label">ACCOUNT</div>
+  <nav class="nav">
+   <button class="nav-link" data-page="settings"><span class="nav-symbol">⚙</span>Settings</button>
+  </nav>
+  <div class="sidebar-bottom">
+   <div class="mini-user"><div id="side-avatar" class="avatar">SM</div><div><strong id="side-name">Member</strong><small>Personal account</small></div></div>
+   <button id="logout" class="logout">↪ <span>Sign out</span></button>
+  </div>
+ </aside>
+
+ <div class="main">
+  <header class="topbar">
+   <div class="topbar-left"><button id="mobile-nav" class="mobile-nav">☰</button><div><span class="top-label">PERSONAL DASHBOARD</span><strong id="header-date">Today</strong></div></div>
+   <div class="top-actions"><button class="icon-button" id="notifications" title="Notifications">♧</button><button class="button primary" data-open="workout">+ Log workout</button></div>
+  </header>
+
+  <main class="content">
+   <!-- DASHBOARD -->
+   <section id="page-dashboard" class="page">
+    <div class="welcome-row">
+     <div><span class="eyebrow">OVERVIEW</span><h1>Good morning, <span id="first-name">Athlete</span>.</h1><p>Here's your training picture at a glance.</p></div>
+     <div class="streak-card"><div class="streak-fire">✦</div><div><strong id="streak">0 day</strong><small>consistency streak</small></div></div>
+    </div>
+
+    <div class="hero-card">
+     <div class="hero-copy"><span class="hero-kicker">WEEKLY FOCUS</span><h2>Build a routine<br>you can repeat.</h2><p id="hero-message">Log your first workout this week and start building momentum.</p><button class="hero-button" data-open="workout">Start a workout <span>→</span></button></div>
+     <div class="hero-orbit"><div class="orbit-ring ring-one"></div><div class="orbit-ring ring-two"></div><div class="orbit-core"><span>7</span><small>DAYS</small></div></div>
+    </div>
+
+    <div class="section-head"><div><span class="eyebrow">THIS WEEK</span><h2>Your activity</h2></div><button class="text-link" data-page-link="progress">View progress →</button></div>
+    <div class="metric-grid">
+     <article class="metric"><div class="metric-head"><span>Training time</span><span class="metric-icon">◷</span></div><strong id="metric-minutes">0</strong><small>minutes this week</small><div class="micro-bar"><i id="minutes-bar"></i></div></article>
+     <article class="metric"><div class="metric-head"><span>Calories</span><span class="metric-icon">⌁</span></div><strong id="metric-calories">0</strong><small>kcal burned</small><div class="micro-bar"><i id="calories-bar"></i></div></article>
+     <article class="metric"><div class="metric-head"><span>Sessions</span><span class="metric-icon">✓</span></div><strong id="metric-sessions">0</strong><small>workouts completed</small><div class="micro-bar"><i id="sessions-bar"></i></div></article>
+     <article class="metric"><div class="metric-head"><span>Current weight</span><span class="metric-icon">↗</span></div><strong><span id="metric-weight">0.0</span><em> kg</em></strong><small>latest measurement</small><div class="micro-bar"><i id="weight-bar"></i></div></article>
+    </div>
+
+    <div class="dashboard-grid">
+     <article class="panel large">
+      <div class="panel-head"><div><span class="eyebrow">ACTIVITY</span><h3>Weekly training</h3></div><span class="panel-note">Minutes</span></div>
+      <div class="chart-wrap"><div class="y-labels"><span>120</span><span>80</span><span>40</span><span>0</span></div><div class="bar-chart" id="weekly-chart"></div></div>
+      <div class="chart-days" id="chart-days"></div>
+     </article>
+     <article class="panel">
+      <div class="panel-head"><div><span class="eyebrow">TARGETS</span><h3>Goals</h3></div><button class="plus-mini" data-open="goal">+</button></div>
+      <div id="dashboard-goals" class="goal-stack"></div>
+     </article>
+    </div>
+
+    <div class="dashboard-grid bottom-grid">
+     <article class="panel">
+      <div class="panel-head"><div><span class="eyebrow">RECENT</span><h3>Latest workouts</h3></div><button class="text-link" data-page-link="workouts">See all →</button></div>
+      <div id="recent-workouts" class="recent-list"></div>
+     </article>
+     <article class="panel hydration">
+      <div class="panel-head"><div><span class="eyebrow">DAILY HABIT</span><h3>Hydration</h3></div><span class="hydration-target">2,500 ml target</span></div>
+      <div class="water-main"><div class="water-number"><strong id="water-value">0</strong><span>ml today</span></div><div class="water-glass"><div id="water-fill"></div></div></div>
+      <div class="water-buttons"><button data-water="250">+250</button><button data-water="500">+500</button><button data-water="750">+750</button></div>
+     </article>
+    </div>
+   </section>
+
+   <!-- WORKOUTS -->
+   <section id="page-workouts" class="page hidden">
+    <div class="page-title-row"><div><span class="eyebrow">TRAINING LOG</span><h1>Workouts</h1><p>Review every session and keep your training history organized.</p></div><button class="button primary" data-open="workout">+ Log workout</button></div>
+    <div class="filter-row"><div class="search"><span>⌕</span><input id="workout-search" placeholder="Search workout name..."></div><select id="workout-filter"><option>All categories</option><option>Strength</option><option>Cardio</option><option>Core</option><option>Mobility</option></select></div>
+    <article class="panel table-panel"><div class="panel-head"><div><h3>Workout history</h3><span id="workout-count" class="panel-note">0 sessions</span></div></div>
+     <div class="table-scroll"><table><thead><tr><th>Date</th><th>Workout</th><th>Type</th><th>Duration</th><th>Calories</th><th>Intensity</th><th></th></tr></thead><tbody id="workout-table"></tbody></table></div>
+    </article>
+   </section>
+
+   <!-- EXERCISES -->
+   <section id="page-exercises" class="page hidden">
+    <div class="page-title-row"><div><span class="eyebrow">MOVEMENT LIBRARY</span><h1>Exercise library</h1><p>Explore movements and build smarter sessions.</p></div><div class="library-stat"><strong id="exercise-total">0</strong><span>movements</span></div></div>
+    <div class="filter-row exercise-filters">
+     <div class="search"><span>⌕</span><input id="exercise-search" placeholder="Search movement, muscle or equipment..."></div>
+     <select id="exercise-category"><option>All</option><option>Strength</option><option>Cardio</option><option>Core</option><option>Mobility</option></select>
+     <select id="exercise-difficulty"><option>All</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select>
+    </div>
+    <div id="exercise-grid" class="exercise-grid"></div>
+   </section>
+
+   <!-- PROGRESS -->
+   <section id="page-progress" class="page hidden">
+    <div class="page-title-row"><div><span class="eyebrow">MEASUREMENTS</span><h1>Progress</h1><p>Use your data to understand your trend, not just a single day.</p></div><button class="button primary" data-open="weight">+ Log weight</button></div>
+    <div class="progress-cards">
+     <article class="progress-stat"><span>Current weight</span><strong id="progress-weight">0.0 kg</strong><small>Latest measurement</small></article>
+     <article class="progress-stat"><span>Starting weight</span><strong id="start-weight">0.0 kg</strong><small>First measurement</small></article>
+     <article class="progress-stat"><span>Change</span><strong id="weight-change">0.0 kg</strong><small>Since first measurement</small></article>
+     <article class="progress-stat"><span>BMI</span><strong id="bmi">0.0</strong><small>Height-based estimate</small></article>
+    </div>
+    <div class="dashboard-grid">
+     <article class="panel large"><div class="panel-head"><div><span class="eyebrow">BODY METRICS</span><h3>Weight trend</h3></div><span class="panel-note">Last 90 entries</span></div><div id="weight-chart" class="line-chart"></div></article>
+     <article class="panel"><div class="panel-head"><div><span class="eyebrow">HISTORY</span><h3>Recent weigh-ins</h3></div></div><div id="weight-history" class="history-list"></div></article>
+    </div>
+   </section>
+
+   <!-- GOALS -->
+   <section id="page-goals" class="page hidden">
+    <div class="page-title-row"><div><span class="eyebrow">DIRECTION</span><h1>Goals</h1><p>Turn intentions into visible, measurable milestones.</p></div><button class="button primary" data-open="goal">+ Create goal</button></div>
+    <div id="goals-grid" class="goals-grid"></div>
+   </section>
+
+   <!-- SETTINGS -->
+   <section id="page-settings" class="page hidden">
+    <div class="page-title-row"><div><span class="eyebrow">ACCOUNT</span><h1>Settings</h1><p>Personalize your profile and daily targets.</p></div></div>
+    <article class="panel settings-card"><div class="settings-intro"><div class="settings-avatar" id="settings-avatar">SM</div><div><h3>Personal profile</h3><p>Your profile is used to personalize your dashboard.</p></div></div>
+     <form id="settings-form" class="settings-form">
+      <div class="field"><label>Full name</label><input id="set-name" name="name"></div>
+      <div class="field"><label>Email</label><input id="set-email" disabled></div>
+      <div class="field"><label>Height (cm)</label><input id="set-height" name="height" type="number"></div>
+      <div class="field"><label>Weight (kg)</label><input id="set-weight" name="weight" type="number" step=".1"></div>
+      <div class="field"><label>Primary goal</label><select id="set-goal" name="goal"><option>Build strength</option><option>Lose weight</option><option>Improve fitness</option><option>Maintain</option></select></div>
+      <div class="field"><label>Daily calorie target</label><input id="set-calories" name="daily_calories" type="number"></div>
+      <div class="settings-save"><button class="button primary">Save changes</button></div>
+     </form>
+    </article>
+   </section>
+  </main>
+ </div>
+</div>
+
+<!-- MODALS -->
+<div id="workout-modal" class="modal-backdrop hidden"><div class="modal"><div class="modal-head"><div><span class="eyebrow">TRAINING</span><h2>Log a workout</h2><p>Add the details of your session.</p></div><button class="modal-close">×</button></div>
+<form id="workout-form" class="modal-form">
+ <div class="field full"><label>Workout name</label><input name="name" placeholder="Push day, 5K run, Full body..." required></div>
+ <div class="field"><label>Category</label><select name="category"><option>Strength</option><option>Cardio</option><option>Core</option><option>Mobility</option></select></div>
+ <div class="field"><label>Intensity</label><select name="intensity"><option>Easy</option><option selected>Moderate</option><option>Hard</option><option>Very hard</option></select></div>
+ <div class="field"><label>Duration (minutes)</label><input name="duration" type="number" min="1" placeholder="45" required></div>
+ <div class="field"><label>Calories burned</label><input name="calories" type="number" min="0" placeholder="300"></div>
+ <div class="field"><label>Date</label><input name="date" type="date" id="workout-date" required></div>
+ <div class="field full"><label>Notes</label><textarea name="notes" rows="4" placeholder="How did the workout feel?"></textarea></div>
+ <div class="modal-actions"><button type="button" class="button secondary modal-cancel">Cancel</button><button class="button primary">Save workout</button></div>
+</form></div></div>
+
+<div id="weight-modal" class="modal-backdrop hidden"><div class="modal small-modal"><div class="modal-head"><div><span class="eyebrow">MEASUREMENT</span><h2>Log weight</h2></div><button class="modal-close">×</button></div>
+<form id="weight-form" class="modal-form"><div class="field"><label>Weight (kg)</label><input name="weight" type="number" step=".1" min="20" max="300" required></div><div class="field"><label>Date</label><input name="date" id="weight-date" type="date" required></div><div class="modal-actions"><button type="button" class="button secondary modal-cancel">Cancel</button><button class="button primary">Save measurement</button></div></form></div></div>
+
+<div id="goal-modal" class="modal-backdrop hidden"><div class="modal small-modal"><div class="modal-head"><div><span class="eyebrow">MILESTONE</span><h2>Create a goal</h2></div><button class="modal-close">×</button></div>
+<form id="goal-form" class="modal-form"><div class="field full"><label>Goal title</label><input name="title" placeholder="Complete 4 workouts this week" required></div><div class="field"><label>Target</label><input name="target" type="number" step=".1" required></div><div class="field"><label>Unit</label><select name="unit"><option>sessions</option><option>kg</option><option>km</option><option>minutes</option><option>reps</option></select></div><div class="field full"><label>Deadline (optional)</label><input name="deadline" type="date"></div><div class="modal-actions"><button type="button" class="button secondary modal-cancel">Cancel</button><button class="button primary">Create goal</button></div></form></div></div>
+
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
